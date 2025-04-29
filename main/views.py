@@ -19,3 +19,11 @@ class ContactView(View):
         return render(request, 'main/contact.html', {
             'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
         })
+    
+class PortfolioView(View):
+    def get(self, request):
+        return render(request, 'main/portfolio.html')
+
+class GithubView(View):
+    def get(self, request):
+        return render(request, 'main/github.html')
