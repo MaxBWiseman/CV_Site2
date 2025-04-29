@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 bg-color-personal-info section-column">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="section-heading uppercase">
+                        Personel Info
+                    </h3>
+                </div>
+            </div>
+            <div class="personal-info-item">
+                <div class="key">
+                    <p class="uppercase">
+                        Name:
+                    </p>
+                </div>
+                <div class="value">
+                    <p>
+                        Max Bland Wiseman
+                    </p>
+                </div>
+            </div>
+            <div class="personal-info-item">
+                <div class="key">
+                    <p class="uppercase">
+                        Residing:
+                    </p>
+                </div>
+                <div class="value">
+                    <p>
+                        United Kingdom, Devon
+                    </p>
+                </div>
+            </div>
+            <div class="personal-info-item">
+                <div class="key">
+                    <p class="uppercase">
+                        Email:
+                    </p>
+                </div>
+                <div class="value">
+                    <p>
+                        maxwise70@hotmail.co.uk
+                    </p>
+                </div>
+                <div id="map" class="mt-4"></div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-9 bg-color-contact section-column">
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-4 col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="contact-heading uppercase text-center white-text p-5">Fancy a chat?</h3>
+                            <h5 class="uppercase text-center white-text">Get hold of me here!</h5>
+                            <div class="card3 center-form">
+                                <form class="form" onsubmit="return sendMail(this)">
+                                    <div class="group">
+                                        <input id="fullname" name="name" placeholder="" type="text" required>
+                                        <label for="fullname">Name</label>
+                                    </div>
+                                    <div class="group">
+                                        <input placeholder="" type="email" id="emailaddress" name="emailaddress"
+                                            required>
+                                        <label for="emailaddress">Email</label>
+                                    </div>
+                                    <div class="group">
+                                        <textarea placeholder="" id="comment" name="comment" rows="5"
+                                            required></textarea>
+                                        <label for="comment">Comment</label>
+                                    </div>
+                                    <button id="send" type="submit">Submit</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
