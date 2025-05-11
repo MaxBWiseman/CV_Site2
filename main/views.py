@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.views import View
 from .models import Projects, Skills, BlogPost
@@ -29,3 +29,7 @@ class PortfolioView(View):
 class GithubView(View):
     def get(self, request):
         return render(request, 'main/github.html')
+    
+def project_detail(request, slug):
+    project = get_object_or_404(Projects, slug=slug)
+    return render(request, 'main/project_detail.html', {'project': project})

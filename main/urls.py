@@ -1,12 +1,14 @@
 from django.urls import path
-from .views import HomeView, ResumeView, ContactView, PortfolioView, GithubView
+from . import views
 
 urlpatterns = [
-    path("", HomeView.as_view(), name="home"),
-    path("resume", ResumeView.as_view(), name="resume"),
-    path("contact", ContactView.as_view(), name="contact"),
-    path("portfolio", PortfolioView.as_view(), name="portfolio"),
-    path("github", GithubView.as_view(), name="github"),
+    path("", views.HomeView.as_view(), name="home"),
+    path("resume", views.ResumeView.as_view(), name="resume"),
+    path("contact", views.ContactView.as_view(), name="contact"),
+    path("portfolio", views.PortfolioView.as_view(), name="portfolio"),
+    path("github", views.GithubView.as_view(), name="github"),
+    path("project_detail/<slug:slug>/", views.project_detail,
+         name="project_detail")
 ]
 
 # dont add a "/" of the path as it will associate it with other paths. To have

@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include('main.urls'), name='main'),  # Include the main app's URLs
+    path("", include('main.urls'), name='main'),
+    path("summernote/", include('django_summernote.urls')),
 ]
 
 if settings.DEBUG:

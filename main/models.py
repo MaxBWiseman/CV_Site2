@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Projects(models.Model):
+    slug = models.SlugField(max_length=8, unique=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
     project_banner_image = models.ImageField(upload_to='project_banner_images/')
