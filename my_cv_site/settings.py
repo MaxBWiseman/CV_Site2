@@ -31,6 +31,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 GOOGLE_MAPS_API_KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 
+MEDIA_URL = '/media/'  # URL to access media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store media files
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
