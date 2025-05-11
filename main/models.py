@@ -13,6 +13,9 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name_plural = "Projects"
 
 class Skills(models.Model):
     skill_name = models.CharField(max_length=100)
@@ -21,6 +24,9 @@ class Skills(models.Model):
 
     def __str__(self):
         return self.skill_name
+    
+    class Meta:
+        verbose_name_plural = "Skills"
     
 class BlogPost(models.Model):
     title = models.CharField(max_length=100)
@@ -34,3 +40,6 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name_plural = "Blog Posts"

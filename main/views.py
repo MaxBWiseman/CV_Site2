@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.views import View
+from .models import Projects, Skills, BlogPost
 
 # Create your views here.
 
@@ -22,7 +23,8 @@ class ContactView(View):
     
 class PortfolioView(View):
     def get(self, request):
-        return render(request, 'main/portfolio.html')
+        projects = Projects.objects.all()  # Load projects
+        return render(request, 'main/portfolio.html', {'projects': projects})
 
 class GithubView(View):
     def get(self, request):
