@@ -9,4 +9,5 @@ urlpatterns = [
     path("github", GithubView.as_view(), name="github"),
 ]
 
-# dont add a "/" of the path as it will associate it with other paths. To have a unique path, dont include "/"
+# dont add a "/" of the path as it will associate it with other paths. To have
+# a unique path, dont include "/"

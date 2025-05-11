@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+<!-- REMEMBER LOADING STATIC DOES NOT INCLUDE ANY FILES WITHIN STATIC,
+ IT JUST ENABLES THE "static" TAG TO USE FOR FILE IMPORTS. SEE THE SCRIPT TAG
+ BELOW -->
 {% block content %}
 <section class="container-fluid">
     <div class="row bg-color-contact">
@@ -9,14 +12,13 @@
             <div id="gh-user-data-nousername"></div>
             <div class="center-form mb-3">
 
-                <input type="text" id="gh-username" value="MaxBWiseman" oninput="fetchGitHubInformation()" />
+                <input type="text" id="gh-username" value="MaxBWiseman"/>
                 <div id="loader-container" style="display: none;">
                     <div class="loader" alt="loading..."></div>
                 </div>
             </div>
         </div>
     
-
     <div class="container-fluid">
         <div class="row d-flex justify-content-center bg-color-contact">
             <div class="col-12 col-md-8">
@@ -26,4 +28,5 @@
         </div>
     </div>
 </section>
+<script src="{% static 'js/github.js' %}"></script>
 {% endblock %}
