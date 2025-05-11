@@ -1,16 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-# Create your models here.
+from django.utils.text import slugify
 
 class Projects(models.Model):
-    slug = models.SlugField(max_length=8, unique=True)
+    slug = models.SlugField(max_length=8, unique=True, blank=True, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField()
     project_banner_image = models.ImageField(upload_to='project_banner_images/')
     link = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project_images = models.ImageField(upload_to='project_images/')
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)[:8]
+            unique_slug = base_slug
+            counter = 1
+            while Projects.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

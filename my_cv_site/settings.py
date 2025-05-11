@@ -82,6 +82,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "my_cv_site.wsgi.application"
 
+SUMMERNOTE_CONFIG = {
+    'attachment_upload_to': 'project_images/',  # Use the same upload path as the `project_images` field
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
