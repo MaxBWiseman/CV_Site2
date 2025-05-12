@@ -1,0 +1,59 @@
+<div class="card3 card mb-3">
+  <div class="skill-header text-center text-white">My Languages</div>
+  <div class="card-body">
+    {% for skill in skills.languages %}
+      <div class="skill">
+        <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+        <div class="skill-level">
+          <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
+        </div>
+        <div class="skill-percent-number">{{ skill.percentage }}%</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card3 card mb-3">
+  <div class="skill-header text-center text-white">My Tools</div>
+  <div class="card-body">
+    {% for skill in skills.tools %}
+      <div class="skill">
+        <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+        <div class="skill-level">
+          <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
+        </div>
+        <div class="skill-percent-number">{{ skill.percentage }}%</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card3 card mb-3">
+  <div class="skill-header text-center text-white">My Frameworks</div>
+  <div class="card-body">
+    {% for skill in skills.frameworks %}
+      <div class="skill">
+        <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+        <div class="skill-level">
+          <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
+        </div>
+        <div class="skill-percent-number">{{ skill.percentage }}%</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card3 card mb-3">
+  <div class="skill-header text-center text-white">My Databases</div>
+  <div class="card-body">
+    {% for skill in skills.databases %}
+      <div class="skill">
+        <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+        <div class="skill-level">
+          <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
+        </div>
+        <div class="skill-percent-number">{{ skill.percentage }}%</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

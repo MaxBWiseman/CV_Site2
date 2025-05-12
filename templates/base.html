@@ -36,6 +36,7 @@
                         <div class="row g-0">
                             <div class="col-12 d-flex">
                                 <div class="card2 col nav">
+                                    <!-- FIX: Google map dissapears if page is accessed through the nav bar, works on initial load though-->
                                     <p><a href="{% url "home" %}"><span>🏠HOME</span></a></p>
                                     <p><a href="{% url "resume" %}"><span>🎓RESUME</span></a></p>
                                     <p><a href="{% url "portfolio" %}"><span>🙌PORTFOLIO</span></a></p>
@@ -54,15 +55,13 @@
         {% endblock %}
         <footer class="container-fluid">
             <div id="footer-details" class="row">
-                <div class="col-sm-4 text-center">
-                    <h5 class="uppercase general-sub">About</h5>
+                <div class="col-sm-4 text-center mt-3">
                     <p class="inline-block">
                         Here’s to code that hums quietly, databases that whisper, and APIs that connect the dots. 🌐 Let’s
                         build systems that stand the test of traffic and time.
                     </p>
                 </div>
-                <div class="col-sm-4 text-center">
-                    <h5 class="uppercase general-sub">Download</h5>
+                <div class="col-sm-4 text-center mt-3">
                     <p class="inline-block">
                         Need a printable version of my CV? Download it here.
                         <a href="assets/cv/Max-Wiseman-CV.docx" target="_blank" class="cv-pdf d-block mt-2">
@@ -72,7 +71,6 @@
                     </p>
                 </div>
                 <div class="col-sm-4 text-center">
-                    <h5 class="uppercase general-sub">Social</h5>
                     <ul class="list-inline social-links">
                         <li class="list-inline-item">
                             <a target="_blank" href="#">

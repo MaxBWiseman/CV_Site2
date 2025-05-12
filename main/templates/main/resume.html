@@ -64,11 +64,6 @@
             <div class="row">
                 <div class="col">
                     <h3 class="section-heading uppercase">My Skills</h3>
-                    <p class="section-heading fw-bold text-center p-background">My journey in the tech industry is
-                        just
-                        beginning, and I'm eager to learn and grow as a
-                        developer. I hope to work in the tech industry at a respected company someday, where I can
-                        contribute to meaningful projects and make a positive impact.</p>
                 </div>
             </div>
             <div class="row">
@@ -110,86 +105,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card row">
-                    <div class="header">My Languages</div>
-                    <div class="body">
-                        <div class="skill">
-                            <div class="skill-name html">HTML</div>
-                            <div class="skill-level">
-                                <div style="width: 75%" class="skill-percent1"></div>
-                            </div>
-                            <div class="skill-percent-number">75%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name css">CSS</div>
-                            <div class="skill-level">
-                                <div style="width: 75%" class="skill-percent2"></div>
-                            </div>
-                            <div class="skill-percent-number">75%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name js">JavaScript</div>
-                            <div class="skill-level">
-                                <div style="width: 65%" class="skill-percent3"></div>
-                            </div>
-                            <div class="skill-percent-number">65%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name html">Python</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent4"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name html">Sketch/Arduino</div>
-                            <div class="skill-level">
-                                <div style="width: 25%" class="skill-percent5"></div>
-                            </div>
-                            <div class="skill-percent-number">25%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card row">
-                    <div class="header">My Tools</div>
-                    <div class="body">
-                        <div class="skill">
-                            <div class="skill-name html">Bootstrap</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent1"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name css">JQuery</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent2"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name js">Jest</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent3"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name html">Flask</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent4"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-name html">Django</div>
-                            <div class="skill-level">
-                                <div style="width: 55%" class="skill-percent5"></div>
-                            </div>
-                            <div class="skill-percent-number">55%</div>
-                        </div>
-                    </div>
-                </div>
+                {% include 'main/skill_cards.html' with skills=skills %}       
 </section>
 {% endblock %}
