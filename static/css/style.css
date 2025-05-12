@@ -322,6 +322,14 @@ footer {
   margin-bottom: 4px;
 }
 
+.carousel-indicators {
+  bottom: -30px;
+}
+
+#skillCarousel {
+  margin-top: 40px;
+}
+
 .progress-type {
   position: absolute;
   left: 0px;
@@ -387,7 +395,6 @@ footer {
   background-color: #eee;
   border-radius: 10px;
   overflow: hidden;
-  margin-left: 20px;
 }
 
 .skill-percent1 {
@@ -416,7 +423,6 @@ footer {
 }
 
 .skill-percent-number {
-  margin-left: 20px;
   font-size: 16px;
 }
 
@@ -984,4 +990,35 @@ img {
   .card2 p:hover span {
     transform: rotate(-90deg);
   }
+}
+
+/* Adjust carousel card size for screens smaller than 570px */
+@media (max-width: 570px) {
+  .card3 {
+    width: 100%; /* Make the card take up 90% of the screen width */
+    padding: 20px; /* Add some padding for better spacing */
+  }
+
+  .skill {
+    flex-direction: column; /* Stack skill items vertically */
+    align-items: flex-start;
+  }
+
+  .skill-percent-number {
+    margin-top: 5px;
+  }
+
+  .skill-name {
+    text-align: center;;
+    margin-bottom: 5px; /* Add some space below the skill name */
+  }
+  
+}
+
+@media (min-width: 570px) {
+
+  .skill-percent-number {
+    margin-left: 20px;
+  }
+  
 }
