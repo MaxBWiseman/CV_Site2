@@ -3,11 +3,30 @@
 /*body/html*/
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  height: 100%; /* Ensure the html and body elements span the full height of the viewport */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  flex-direction: column; /* Stack header, content, and footer vertically */
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
 }
 
+section {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-row {
+  flex: 1; /* Allow the row to grow and fill available space */
+  display: flex; /* Use Flexbox for layout */
+  margin: 0; /* Remove negative margins */
+  width: 100%; /* Ensure the row spans the full width */
+  height: 100%; /* Ensure the row spans the full height of its parent */
+}
 /* Colours */
 .bg-color-name-title {
   background-color: #333;
@@ -203,9 +222,10 @@ h4 {
 footer {
   background-color: #333;
   color: #e67e22;
-  min-height: 120px;
   margin: 0;
   padding: 0;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .cv-pdf i {
@@ -477,7 +497,7 @@ footer {
 }
 
 .card3 {
-  width: fit-content;;
+  width: fit-content;
   height: fit-content;
   border-radius: 4px;
   background: #fafafa;

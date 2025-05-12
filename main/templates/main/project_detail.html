@@ -1,24 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<section class="bg-color-three-reasons">
+  <section class="bg-color-three-reasons">
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center mt-2">
-                <img src="{{ project.project_banner_image.url }}" alt="Project Image"/>
-            </div>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mt-2">
+          <img src="{{ project.project_banner_image.url }}" alt="Project Image" />
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="section-heading uppercase text-center bold">
-                    {{ project.title }}
-                </h3>
-                <article class="justify-content-center">
-                    <p class="text-center"> {{ project.description|safe }}</p>
-                </article>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="section-heading uppercase text-center bold">{{ project.title }}</h3>
+          <article class="justify-content-center">
+            <p class="text-center">{{ project.description|safe }}</p>
+          </article>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 {% endblock %}

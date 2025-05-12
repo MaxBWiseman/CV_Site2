@@ -23,7 +23,7 @@
 
     <body>
         <header>
-            <div class="container text-center">
+            <div class="container-fluid text-center">
                 <div class="row g-0">
                     <div class="col-sm-5">
                         <a class="" href="index.html">
@@ -50,11 +50,13 @@
                 </div>
             </div>
         </header>
+        <main>
         {% block content %}
         <!-- Other pages content fills here-->
         {% endblock %}
+        </main>
         <footer class="container-fluid">
-            <div id="footer-details" class="row">
+            <div id="footer-details container-fluid" class="row">
                 <div class="col-sm-4 text-center mt-3">
                     <p class="inline-block">
                         Here’s to code that hums quietly, databases that whisper, and APIs that connect the dots. 🌐 Let’s
