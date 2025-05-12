@@ -7,6 +7,7 @@ body {
   margin: 0; /* Remove default margin */
   display: flex;
   flex-direction: column; /* Stack header, content, and footer vertically */
+  background-color: #676767; 
 }
 main {
   flex: 1;
@@ -17,7 +18,6 @@ main {
 section {
   flex: 1;
   display: flex;
-  flex-direction: row;
 }
 
 .contact-row {
@@ -330,6 +330,37 @@ footer {
   margin-top: 40px;
 }
 
+/* Adjust carousel card size for screens smaller than 570px */
+@media (max-width: 570px) {
+  .card3 {
+    width: 100%; /* Make the card take up 90% of the screen width */
+    padding: 20px; /* Add some padding for better spacing */
+  }
+
+  .skill {
+    flex-direction: column; /* Stack skill items vertically */
+    align-items: flex-start;
+  }
+
+  .skill-percent-number {
+    margin-top: 5px;
+  }
+
+  .skill-name {
+    text-align: center;;
+    margin-bottom: 5px; /* Add some space below the skill name */
+  }
+  
+}
+
+@media (min-width: 570px) {
+
+  .skill-percent-number {
+    margin-left: 20px;
+  }
+  
+}
+
 .progress-type {
   position: absolute;
   left: 0px;
@@ -351,6 +382,8 @@ footer {
 
 .card {
   width:auto;
+  --bs-card-border-width: 0; /* Set the border width to 0 */
+
 }
 
 .header {
@@ -990,35 +1023,4 @@ img {
   .card2 p:hover span {
     transform: rotate(-90deg);
   }
-}
-
-/* Adjust carousel card size for screens smaller than 570px */
-@media (max-width: 570px) {
-  .card3 {
-    width: 100%; /* Make the card take up 90% of the screen width */
-    padding: 20px; /* Add some padding for better spacing */
-  }
-
-  .skill {
-    flex-direction: column; /* Stack skill items vertically */
-    align-items: flex-start;
-  }
-
-  .skill-percent-number {
-    margin-top: 5px;
-  }
-
-  .skill-name {
-    text-align: center;;
-    margin-bottom: 5px; /* Add some space below the skill name */
-  }
-  
-}
-
-@media (min-width: 570px) {
-
-  .skill-percent-number {
-    margin-left: 20px;
-  }
-  
 }
