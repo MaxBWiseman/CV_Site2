@@ -341,10 +341,8 @@ footer {
   padding: 25px;
 }
 
-.card:hover {
-  border: 5px solid #e67e22;
-  transform: scale(1.06);
-  transition: 1s ease-in-out;
+.card {
+  width:auto;
 }
 
 .header {
@@ -482,11 +480,11 @@ footer {
 }
 
 .center-form {
-  padding-top: 10px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px; 
+    box-sizing: border-box; 
 }
 
 .center-form form {
@@ -555,10 +553,9 @@ footer {
 
 .form .group input:focus + label,
 .form .group textarea:focus + label {
-  top: -10px;
+  top: -17px;
   left: 10px;
-  background-color: #e67e22;
-  color: #3366cc;
+  color: #e67f22;
   font-weight: 600;
   font-size: 14px;
 }
