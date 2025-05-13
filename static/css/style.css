@@ -215,7 +215,6 @@ h4 {
 
 .uppercase {
   text-transform: uppercase;
-  font-size: larger;
 }
 
 /*Footer*/
@@ -393,7 +392,7 @@ footer {
 
 .card-title {
   background-color: #e67f22;
-  height: 30px;
+  height: 25px;
   position: absolute; /* Position the title relative to its parent */
   top: 0; /* Align it to the top edge */
   left: 50%; /* Center it horizontally */
@@ -1025,6 +1024,19 @@ img {
 
   .card2 p:hover span {
     transform: rotate(-90deg);
+  }
+}
+
+@media (max-width: 800px) {
+  .skill-cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .card {
+    max-width: 85%;
   }
 }
 

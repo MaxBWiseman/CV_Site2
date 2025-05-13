@@ -9,9 +9,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 text-center">
           <h3 class="section-heading uppercase text-center bold">{{ project.title }}</h3>
-          <article class="justify-content-center">
+          <a href="{{ project.github_link }}" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
+          <a href="{{ project.deployed_link }}" class="btn btn-primary mt-2" target="_blank">View Deployed Project</a>
+          <article>
             <p class="text-center">{{ project.description|safe }}</p>
           </article>
         </div>

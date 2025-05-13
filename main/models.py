@@ -7,9 +7,10 @@ class Projects(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     project_banner_image = models.ImageField(upload_to='project_banner_images/')
-    link = models.URLField(max_length=200)
+    github_link = models.URLField(max_length=200)
+    deployed_link = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    project_images = models.ImageField(upload_to='project_images/')
+    project_images = models.ImageField(upload_to='project_images/', blank=True, null=True)
     
     def save(self, *args, **kwargs):
         if not self.slug:
