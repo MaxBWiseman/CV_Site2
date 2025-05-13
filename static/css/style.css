@@ -215,6 +215,7 @@ h4 {
 
 .uppercase {
   text-transform: uppercase;
+  font-size: larger;
 }
 
 /*Footer*/
@@ -383,8 +384,28 @@ footer {
 .card {
   width:auto;
   --bs-card-border-width: 0; /* Set the border width to 0 */
-
+  break-inside: avoid; /* Prevent cards from breaking across columns */
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; 
+  background-color: #fff;
 }
+
+.card-title {
+  background-color: #e67f22;
+  height: 30px;
+  position: absolute; /* Position the title relative to its parent */
+  top: 0; /* Align it to the top edge */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  z-index: 1; /* Ensure it appears above the image */
+}
+
+.skill-cards-container {
+  column-count: 2; /* Number of columns */
+  column-gap: 20px; /* Space between columns */
+}
+
 
 .header {
   background-color: #676767;
@@ -441,17 +462,12 @@ footer {
 }
 
 .skill-percent3 {
-  background-color: #dfaa1b;
+  background-color: #e93a3a;
   height: 100%;
 }
 
 .skill-percent4 {
   background-color: #e93aa6;
-  height: 100%;
-}
-
-.skill-percent5 {
-  background-color: #e93a3a;
   height: 100%;
 }
 
@@ -537,13 +553,14 @@ footer {
   width: fit-content;
   height: fit-content;
   border-radius: 4px;
-  background: #fafafa;
+  background: #fff;
   display: flex;
   justify-content: center;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0;
   border-width: 0 !important;
+  color: #333;
 }
 
 .form {

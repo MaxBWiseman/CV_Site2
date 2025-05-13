@@ -1,94 +1,65 @@
-<div id="skillCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2800">
-  <!-- Indicators -->
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#skillCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#skillCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#skillCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#skillCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-  </div>
-
-  <!-- Carousel Items -->
-  <div class="carousel-inner">
-    <!-- My Languages -->
-    <div class="carousel-item active">
-      <div class="card3 card mb-3">
-        <div class="skill-header text-center text-white">My Languages</div>
-        <div class="card-body">
-          {% for skill in skills.languages %}
-            <div class="skill">
-              <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
-              <div class="skill-level">
-                <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
-              </div>
-              <div class="skill-percent-number">{{ skill.percentage }}%</div>
-            </div>
-          {% endfor %}
+<div class="skill-cards-container mt-4">
+  <!-- My Languages -->
+  <div class="card mb-3">
+    <div class="skill-header text-center text-white">My Languages</div>
+    <div class="card-body">
+      {% for skill in skills.languages %}
+        <div class="skill justify-content-center">
+          <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+          <div class="skill-level">
+            <div style="width: {{ skill.percentage }}%" class="skill-percent1"></div>
+          </div>
+          <div class="skill-percent-number">{{ skill.percentage }}%</div>
         </div>
-      </div>
-    </div>
-
-    <!-- My Tools -->
-    <div class="carousel-item">
-      <div class="card3 card mb-3">
-        <div class="skill-header text-center text-white">My Tools</div>
-        <div class="card-body">
-          {% for skill in skills.tools %}
-            <div class="skill">
-              <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
-              <div class="skill-level">
-                <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
-              </div>
-              <div class="skill-percent-number">{{ skill.percentage }}%</div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-
-    <!-- My Frameworks -->
-    <div class="carousel-item">
-      <div class="card3 card mb-3">
-        <div class="skill-header text-center text-white">My Frameworks</div>
-        <div class="card-body">
-          {% for skill in skills.frameworks %}
-            <div class="skill">
-              <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
-              <div class="skill-level">
-                <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
-              </div>
-              <div class="skill-percent-number">{{ skill.percentage }}%</div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-
-    <!-- My Databases -->
-    <div class="carousel-item">
-      <div class="card3 card mb-3">
-        <div class="skill-header text-center text-white">My Databases</div>
-        <div class="card-body">
-          {% for skill in skills.databases %}
-            <div class="skill">
-              <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
-              <div class="skill-level">
-                <div style="width: {{ skill.percentage }}%" class="skill-percent"></div>
-              </div>
-              <div class="skill-percent-number">{{ skill.percentage }}%</div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 
-  <!-- Carousel Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <!-- My Tools -->
+  <div class="card mb-3">
+    <div class="skill-header text-center text-white">My Databases</div>
+    <div class="card-body">
+      {% for skill in skills.databases %}
+        <div class="skill justify-content-center">
+          <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+          <div class="skill-level">
+            <div style="width: {{ skill.percentage }}%" class="skill-percent2"></div>
+          </div>
+          <div class="skill-percent-number">{{ skill.percentage }}%</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- My Frameworks -->
+  <div class="card mb-3">
+    <div class="skill-header text-center text-white">My Frameworks</div>
+    <div class="card-body">
+      {% for skill in skills.frameworks %}
+        <div class="skill justify-content-center">
+          <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+          <div class="skill-level">
+            <div style="width: {{ skill.percentage }}%" class="skill-percent3"></div>
+          </div>
+          <div class="skill-percent-number">{{ skill.percentage }}%</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- My Databases -->
+  <div class="card mb-3">
+    <div class="skill-header text-center text-white">My Tools</div>
+    <div class="card-body">
+      {% for skill in skills.tools %}
+        <div class="skill justify-content-center">
+          <div class="skill-name {{ skill.css_class }}">{{ skill.name }}</div>
+          <div class="skill-level">
+            <div style="width: {{ skill.percentage }}%" class="skill-percent4"></div>
+          </div>
+          <div class="skill-percent-number">{{ skill.percentage }}%</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
