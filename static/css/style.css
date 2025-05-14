@@ -219,6 +219,10 @@ h4 {
 
 /* readMe */
 
+article {
+  margin-bottom: 40px;
+}
+
 article h1, article h2, article h3, article h4, article h5, article h6 {
     font-weight: bold;
     margin-top: 1em;
@@ -226,6 +230,7 @@ article h1, article h2, article h3, article h4, article h5, article h6 {
 }
 
 article p {
+    margin-top: 0.5em;
     margin-bottom: 1em;
 }
 
@@ -279,7 +284,80 @@ p img {
     height: auto;
 }
 
-/* readMe end *?
+#github-image-carousel {
+    max-width: 800px;
+    max-height: 500px;
+    margin: 0 auto 30px;
+    border-radius: 5px;
+}
+
+#github-image-carousel .carousel-item {
+    height: 500px;
+    overflow-y: auto;
+    background-color: #676767;
+}
+
+#github-image-carousel .carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    max-height: none; /* Allow natural height */
+}
+
+/* Position the previous button outside the left edge */
+#github-image-carousel .carousel-control-prev {
+    left: -58px; /* Move 50px to the left outside the carousel */
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+}
+
+/* Position the next button outside the right edge */
+#github-image-carousel .carousel-control-next {
+    right: -58px; /* Move 50px to the right outside the carousel */
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+}
+
+/* Make the control icons more visible */
+#github-image-carousel .carousel-control-prev-icon,
+#github-image-carousel .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Target the carousel indicators with more specificity */
+#github-image-carousel .carousel-indicators {
+    position: relative; /* Override Bootstrap's absolute positioning */
+    margin-top: 1px !important;
+    justify-content: center;
+    display: flex;
+}
+
+/* Style the indicator buttons */
+#github-image-carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 5px;
+}
+
+@media (max-width: 773px) {
+  #github-image-carousel {
+    display: none !important;
+  }
+}
+
+/* readMe end */
 
 /*Footer*/
 
@@ -1129,5 +1207,23 @@ img {
 
   .card2 p:hover span {
     transform: rotate(-90deg);
+  }
+
+  #portfolio-buttons {
+    flex-direction: column;
+    align-items: center; /* Center the buttons horizontally */
+  }
+  
+  #portfolio-buttons a.btn,
+  #portfolio-buttons button.btn,
+  #portfolio-buttons div {
+    width: auto; /* Prevent full width stretching */
+    margin-bottom: 10px; /* Add spacing between stacked buttons */
+    min-width: 200px; /* Optional: set a minimum width for visual consistency */
+  }
+  
+  /* Remove the horizontal separators when in column layout */
+  #portfolio-buttons span {
+    display: none;
   }
 }
