@@ -16,7 +16,7 @@ class Projects(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = slugify(self.title)[:8]
+            base_slug = slugify(self.title)
             unique_slug = base_slug
             counter = 1
             while Projects.objects.filter(slug=unique_slug).exists():
