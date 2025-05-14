@@ -22,22 +22,18 @@
           <a href="{{ project.deployed_link }}" class="btn btn-primary" target="_blank">View Deployed Project</a>
           <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
           <div>
-            <a href="?read_readme=true" class="btn btn-primary {% if read_readme %}d-none {% else %}d-block {% endif %}">View ReadMe</a>
-            <a href="?read_readme=false" class="btn btn-primary {% if not read_readme %}d-none {% else %}d-block {% endif %}">View Highlights</a>
+            <button id="toggle-readme" class="btn btn-primary">View ReadMe</button>
           </div>
           </div>
           </div>
           </div>
           <hr>
-          {% if read_readme and project_readme_html %}
-            <article class="p-3">
-                <div id="markdown-content">{{ project.project_readme|safe }}</div>
-            </article>
-          {% else %}
           <article class="p-3">
-            <p>{{ project.description|safe }}</p>
+            <div id="content-container">
+                <div id="project-description">{{ project.description|safe }}</div>
+                <div id="markdown-content" style="display: none;">{{ project.project_readme|safe }}</div>
+            </div>
           </article>
-          {% endif %}
         </div>
         </div>
       </div>
@@ -45,19 +41,22 @@
   </section>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggle-readme");
+        const projectDescription = document.getElementById("project-description");
         const markdownContent = document.getElementById("markdown-content");
-        if (markdownContent) {
-            const rawMarkdown = markdownContent.textContent.trim(); // Get raw Markdown
-            const renderedHTML = marked.parse(rawMarkdown); // Use `marked.parse` to convert Markdown to HTML
-            markdownContent.innerHTML = renderedHTML; // Replace content with rendered HTML
-            
-            // Fix image paths in the rendered HTML
+        let readmeVisible = false;
+        
+        // Initialize markdown rendering
+        const rawMarkdown = markdownContent.textContent.trim();
+        const renderedHTML = marked.parse(rawMarkdown);
+        markdownContent.innerHTML = renderedHTML;
+        
+        // Fix image paths when markdown is rendered
+        function fixImagePaths() {
             const images = markdownContent.querySelectorAll('img');
             images.forEach(img => {
                 const src = img.getAttribute('src');
                 if (src && (src.startsWith('./') || !src.startsWith('http') && !src.startsWith('/'))) {
-                    // Replace relative paths with GitHub raw content URLs or your media URLs
-                    // This example assumes GitHub structure - modify as needed for your setup
                     if (src.startsWith('./')) {
                         img.src = "{{ project.github_raw_content_base_url }}" + src.substring(2);
                     } else {
@@ -66,6 +65,23 @@
                 }
             });
         }
+        
+        // Fix image paths at initialization
+        fixImagePaths();
+        
+        // Toggle between description and README
+        toggleButton.addEventListener("click", function() {
+            if (readmeVisible) {
+                markdownContent.style.display = "none";
+                projectDescription.style.display = "block";
+                toggleButton.textContent = "View ReadMe";
+            } else {
+                projectDescription.style.display = "none";
+                markdownContent.style.display = "block";
+                toggleButton.textContent = "View Highlights";
+            }
+            readmeVisible = !readmeVisible;
+        });
     });
 </script>
 {% endblock %}

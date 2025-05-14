@@ -274,6 +274,11 @@ article table th {
     word-break: break-word;
 }
 
+p img {
+    max-width: 50%;
+    height: auto;
+}
+
 /* readMe end *?
 
 /*Footer*/

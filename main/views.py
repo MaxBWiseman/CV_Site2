@@ -73,15 +73,6 @@ class GithubView(View):
     
 def project_detail(request, slug):
     project = get_object_or_404(Projects, slug=slug)
-    read_readme = request.GET.get('read_readme', 'false').lower() == 'true'
-    
-    if read_readme and project.project_readme:
-        project_readme_html = markdown(project.project_readme)
-    else:
-        project_readme_html = None
-    # Pass the project and readme HTML to the template
     return render(request, 'main/project_detail.html', {
         'project': project,
-        'read_readme': read_readme,
-        'project_readme_html': project_readme_html,
-        })
+    })
