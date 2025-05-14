@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 class Projects(models.Model):
-    slug = models.SlugField(max_length=8, unique=True, blank=True, editable=False)
+    slug = models.SlugField(max_length=100, unique=True, blank=True, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField()
     project_banner_image = models.ImageField(upload_to='project_banner_images/')
