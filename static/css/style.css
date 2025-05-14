@@ -217,6 +217,65 @@ h4 {
   text-transform: uppercase;
 }
 
+/* readMe */
+
+article h1, article h2, article h3, article h4, article h5, article h6 {
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+article p {
+    margin-bottom: 1em;
+}
+
+article ul, article ol {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+article pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+article code {
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+article table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+article table th, article table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+article table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: left;
+}
+
+#markdown-content {
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: wrap;
+    word-break: break-word;
+}
+
+/* readMe end *?
+
 /*Footer*/
 
 footer {

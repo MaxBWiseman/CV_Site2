@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.views import View
 from .models import Projects, Skills, BlogPost
+from markdown import markdown
+import re
 
 # Create your views here.
 
@@ -71,4 +73,15 @@ class GithubView(View):
     
 def project_detail(request, slug):
     project = get_object_or_404(Projects, slug=slug)
-    return render(request, 'main/project_detail.html', {'project': project})
+    read_readme = request.GET.get('read_readme', 'false').lower() == 'true'
+    
+    if read_readme and project.project_readme:
+        project_readme_html = markdown(project.project_readme)
+    else:
+        project_readme_html = None
+    # Pass the project and readme HTML to the template
+    return render(request, 'main/project_detail.html', {
+        'project': project,
+        'read_readme': read_readme,
+        'project_readme_html': project_readme_html,
+        })

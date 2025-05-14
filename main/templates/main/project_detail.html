@@ -1,31 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
   <section class="bg-color-three-reasons">
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-12 text-center mt-5 ms-2 me-2">
+        <div class="col-8 text-center mt-5 ms-2 me-2">
           <img src="{{ project.project_banner_image.url }}" alt="Project Image" />
         </div>
       </div>
       <div class="row">
-        <div class="col-12 text-center p-2">
+        <div class="col-12 p-2">
           <div class="project-detail-container rounded mt-4 ms-2 me-2">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
               <h3 class="uppercase bold mt-3">{{ project.title }}</h3>
-            </div>
-          </div>
           <br>
-          <a href="{{ project.github_link }}" class="btn btn-primary mt-2" target="_blank">View on GitHub</a>
-          <a href="{{ project.deployed_link }}" class="btn btn-primary mt-2" target="_blank">View Deployed Project</a>
+          <div class="d-flex justify-content-center">
+          <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">View on GitHub</a>
+          <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
+          <a href="{{ project.deployed_link }}" class="btn btn-primary" target="_blank">View Deployed Project</a>
+          <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
+          <div>
+            <a href="?read_readme=true" class="btn btn-primary {% if read_readme %}d-none {% else %}d-block {% endif %}">View ReadMe</a>
+            <a href="?read_readme=false" class="btn btn-primary {% if not read_readme %}d-none {% else %}d-block {% endif %}">View Highlights</a>
+          </div>
+          </div>
+          </div>
+          </div>
           <hr>
-          <article>
-            <p class="text-center">{{ project.description|safe }}</p>
+          {% if read_readme and project_readme_html %}
+            <article class="p-3">
+                <div id="markdown-content">{{ project.project_readme|safe }}</div>
+            </article>
+          {% else %}
+          <article class="p-3">
+            <p>{{ project.description|safe }}</p>
           </article>
+          {% endif %}
         </div>
         </div>
       </div>
     </div>
   </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const markdownContent = document.getElementById("markdown-content");
+        if (markdownContent) {
+            const rawMarkdown = markdownContent.textContent.trim(); // Get raw Markdown
+            const renderedHTML = marked.parse(rawMarkdown); // Use `marked.parse` to convert Markdown to HTML
+            markdownContent.innerHTML = renderedHTML; // Replace content with rendered HTML
+            
+            // Fix image paths in the rendered HTML
+            const images = markdownContent.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src && (src.startsWith('./') || !src.startsWith('http') && !src.startsWith('/'))) {
+                    // Replace relative paths with GitHub raw content URLs or your media URLs
+                    // This example assumes GitHub structure - modify as needed for your setup
+                    if (src.startsWith('./')) {
+                        img.src = "{{ project.github_raw_content_base_url }}" + src.substring(2);
+                    } else {
+                        img.src = "{{ project.github_raw_content_base_url }}" + src;
+                    }
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}

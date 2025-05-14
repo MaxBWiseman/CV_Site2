@@ -10,7 +10,9 @@ class Projects(models.Model):
     github_link = models.URLField(max_length=200)
     deployed_link = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    project_images = models.ImageField(upload_to='project_images/', blank=True, null=True)
+    images = models.ImageField(upload_to='project_images/', blank=True, null=True)
+    project_readme = models.TextField(blank=True, null=True)
+    github_raw_content_base_url = models.CharField(max_length=255, blank=True)
     
     def save(self, *args, **kwargs):
         if not self.slug:
