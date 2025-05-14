@@ -91,15 +91,18 @@ SUMMERNOTE_CONFIG = {
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 import dj_database_url
 
+# Default database configuration (SQLite)
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# Use PostgreSQL if DATABASE_URL is available (production/Heroku)
+db_from_env = dj_database_url.config(conn_max_age=600, default='')
+if db_from_env:
+    DATABASES['default'].update(db_from_env)
 
 
 # Password validation
