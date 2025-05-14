@@ -390,6 +390,20 @@ footer {
   background-color: #fff;
 }
 
+.project-card-container {
+  transform: translateY(0); /* Initial position */
+  transition: transform 0.3s ease, box-shadow 0.3 ease;
+}
+
+.project-card-container:hover {
+  transform: translateY(-10px); /* Move the card up on hover */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.project-detail-container {
+  background-color: #fff;
+}
+
 .card-title {
   background-color: #e67f22;
   height: 25px;
