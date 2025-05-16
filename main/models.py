@@ -6,13 +6,48 @@ class Projects(models.Model):
     slug = models.SlugField(max_length=100, unique=True, blank=True, editable=False)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    project_banner_image = models.ImageField(upload_to='project_banner_images/')
     github_link = models.URLField(max_length=200)
     deployed_link = models.URLField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    images = models.ImageField(upload_to='project_images/', blank=True, null=True)
     project_readme = models.TextField(blank=True, null=True)
     github_raw_content_base_url = models.CharField(max_length=255, blank=True)
+    
+    @property
+    def github_banner_image_url(self):
+        """Find the first image with 'banner' in its name from the README"""
+        if not self.project_readme or not self.github_raw_content_base_url:
+            return None
+            
+        import re
+        # Look for markdown image syntax with 'banner' in filename
+        banner_pattern = r'!\[.*?\]\((.*?banner.*?\.(?:png|jpg|jpeg|gif|webp))\)'
+        match = re.search(banner_pattern, self.project_readme, re.IGNORECASE)
+        
+        if match:
+            image_path = match.group(1)
+            # Handle relative paths
+            if image_path.startswith('./'):
+                return f"{self.github_raw_content_base_url}{image_path[2:]}"
+            elif not (image_path.startswith('http') or image_path.startswith('/')):
+                return f"{self.github_raw_content_base_url}{image_path}"
+            else:
+                return image_path
+                
+        # No banner image found, look for first image instead
+        image_pattern = r'!\[.*?\]\((.*?\.(?:png|jpg|jpeg|gif|webp))\)'
+        match = re.search(image_pattern, self.project_readme)
+        
+        if match:
+            image_path = match.group(1)
+            # Handle relative paths
+            if image_path.startswith('./'):
+                return f"{self.github_raw_content_base_url}{image_path[2:]}"
+            elif not (image_path.startswith('http') or image_path.startswith('/')):
+                return f"{self.github_raw_content_base_url}{image_path}"
+            else:
+                return image_path
+        
+        return None
     
     def save(self, *args, **kwargs):
         if not self.slug:
