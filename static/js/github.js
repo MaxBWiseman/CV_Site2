@@ -12,7 +12,8 @@ function userInformationHTML(user) {
         <div class="gh-content d-flex justify-content-between">
             <div class="gh-avatar right-align ml-auto">
                 <a href="${user.html_url}" target="_blank">
-                    <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}" />
+                    <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}"
+                    class="d-sm-none d-md-block" />
                 </a>
             </div>
             <p class="right-align">Followers: ${user.followers} - Following: ${user.following} <br> Repos: ${user.public_repos}</p>
