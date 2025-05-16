@@ -11,9 +11,11 @@
               <h5 class="uppercase text-center">You can also search on other user profiles</h5>
               <div id="gh-user-data-nousername"></div>
               <div class="center-form d-flex justify-content-center mb-3">
+                <div class="me-2">
+                <button onclick="fetchGitHubInformation()" class="btn btn-primary"
+                 type="button">Search</button>
+                </div>
                 <input type="text" id="gh-username" value="MaxBWiseman" />
-                <button id="gh-search-button" onclick="fetchGitHubInformation()"
-                 class="btn btn-primary" type="button">Search</button>
                 <div id="loader-container" style="display: none;">
                   <div class="loader" alt="loading..."></div>
                 </div>
