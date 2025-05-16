@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const url = this.getAttribute('href');
             
+            // Special handling for GitHub page - use normal navigation
+            if (url.includes('/github')) {
+                window.location.href = url;
+                return;
+            }
+            
             // Use fetch to get the page content
             fetch(url)
                 .then(response => response.text())
@@ -45,43 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                     
-                    // Update the GitHub initialization section
-                    if (url.includes('/github')) {
-                        console.log("Loading GitHub page via AJAX, initializing...");
-                        
-                        // First load jQuery if not already loaded
-                        if (typeof $ === 'undefined') {
-                            const jQueryScript = document.createElement('script');
-                            jQueryScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-                            jQueryScript.onload = function() {
-                                // Now load GitHub script after jQuery
-                                loadGithubScript();
-                            };
-                            document.head.appendChild(jQueryScript);
-                        } else {
-                            // jQuery already loaded, just load GitHub script
-                            loadGithubScript();
-                        }
-                    }
-                    
-                    function loadGithubScript() {
-                        // Force reload of github.js to ensure proper initialization
-                        const githubScript = document.createElement('script');
-                        githubScript.src = "/static/js/github.js?v=" + new Date().getTime(); // Add cache buster
-                        githubScript.onload = function() {
-                            console.log("GitHub script loaded, initializing...");
-                            // Use a small timeout to ensure script is fully parsed
-                            setTimeout(function() {
-                                if (typeof window.initGitHub === 'function') {
-                                    window.initGitHub();
-                                } else {
-                                    console.error("initGitHub function not found!");
-                                }
-                            }, 100);
-                        };
-                        document.head.appendChild(githubScript);
-                    }
-                    
                     // Process any other scripts in the loaded content
                     const scripts = Array.from(doc.querySelectorAll('script'))
                         .filter(script => !script.textContent.includes('loadGoogleMapsAPI'));
@@ -105,6 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle browser back/forward navigation
     window.addEventListener('popstate', function() {
+        // If we're on the GitHub page, reload completely
+        if (window.location.href.includes('/github')) {
+            window.location.reload();
+            return;
+        }
+        
         fetch(window.location.href)
             .then(response => response.text())
             .then(html => {
@@ -116,11 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if we need to initialize map
                 if (document.getElementById('map') && typeof initMap === 'function') {
                     setTimeout(initMap, 200);
-                }
-                
-                // Check if we need to initialize GitHub
-                if (window.location.href.includes('/github') && typeof initGitHub === 'function') {
-                    setTimeout(initGitHub, 100);
                 }
             });
     });
