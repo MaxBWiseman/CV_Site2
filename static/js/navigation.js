@@ -8,10 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const url = this.getAttribute('href');
             
-            // Save map state if it exists
-            let mapElement = document.getElementById('map');
-            let mapExists = mapElement && window.google && window.google.maps;
-            
             // Use fetch to get the page content
             fetch(url)
                 .then(response => response.text())
@@ -29,10 +25,44 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Update browser history
                     window.history.pushState({path: url}, '', url);
                     
-                    // Reinitialize map if needed and it previously existed
-                    if (mapExists && typeof initMap === 'function') {
-                        initMap();
+                    // Check if we need to load Google Maps
+                    const hasMapElement = document.getElementById('map');
+                    if (hasMapElement) {
+                        // Get any Google Maps script in the new content
+                        const googleMapsScripts = Array.from(doc.querySelectorAll('script'))
+                            .filter(script => script.textContent.includes('loadGoogleMapsAPI'));
+                        
+                        if (googleMapsScripts.length > 0) {
+                            // Execute the Google Maps loading script
+                            const script = document.createElement('script');
+                            script.textContent = googleMapsScripts[0].textContent;
+                            document.head.appendChild(script);
+                        } else {
+                            // If no script found but we have a map div, try to initialize directly
+                            if (window.google && window.google.maps && typeof initMap === 'function') {
+                                setTimeout(initMap, 200); // Small delay to ensure DOM is ready
+                            }
+                        }
                     }
+                    
+                    // Handle GitHub initialization if needed
+                    if (url.includes('/github') && typeof initGitHub === 'function') {
+                        setTimeout(initGitHub, 100);
+                    }
+                    
+                    // Process any other scripts in the loaded content
+                    const scripts = Array.from(doc.querySelectorAll('script'))
+                        .filter(script => !script.textContent.includes('loadGoogleMapsAPI'));
+                    
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.head.appendChild(newScript);
+                    });
                 })
                 .catch(error => {
                     console.error('Error loading page:', error);
@@ -41,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Handle browser back/forward buttons
+    // Handle browser back/forward navigation
     window.addEventListener('popstate', function() {
         fetch(window.location.href)
             .then(response => response.text())
@@ -51,8 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newContent = doc.querySelector('#content-container').innerHTML;
                 contentContainer.innerHTML = newContent;
                 
-                if (typeof initMap === 'function') {
-                    initMap();
+                // Check if we need to initialize map
+                if (document.getElementById('map') && typeof initMap === 'function') {
+                    setTimeout(initMap, 200);
+                }
+                
+                // Check if we need to initialize GitHub
+                if (window.location.href.includes('/github') && typeof initGitHub === 'function') {
+                    setTimeout(initGitHub, 100);
                 }
             });
     });

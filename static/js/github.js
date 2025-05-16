@@ -1,6 +1,20 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Initialize on load and expose the function globally
+function initGitHub() {
     fetchGitHubInformation('MaxBWiseman');
-});
+    
+    // Setup input event if the element exists
+    const usernameInput = document.getElementById('gh-username');
+    if (usernameInput) {
+        usernameInput.addEventListener('input', function() {
+            const username = this.value.trim();
+            if (username) {
+                fetchGitHubInformation(username);
+            }
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initGitHub);
 
 function userInformationHTML(user) {
     return `
@@ -83,3 +97,5 @@ function fetchGitHubInformation(username = null) {
         $('#loader-container').hide();
     });
 }
+
+window.initGitHub = initGitHub;

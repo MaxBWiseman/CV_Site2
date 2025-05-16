@@ -30,4 +30,10 @@
     </div>
   </section>
   <script src="{% static 'js/github.js' %}"></script>
+  <script>
+    // This will run when loaded via AJAX or normal page load
+    if (typeof initGitHub === 'function') {
+      initGitHub();
+    }
+  </script>
 {% endblock %}

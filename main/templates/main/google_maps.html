@@ -1,28 +1,29 @@
 {% if google_maps_api_key %}
 <script>
-  // Track if maps API is loaded
-  window.mapsApiLoaded = window.mapsApiLoaded || false;
-  
-  // Function to load Google Maps API
-  function loadGoogleMapsApi() {
-    if (window.mapsApiLoaded) {
-      // If already loaded, just initialize the map
+  // Function to determine if Google Maps API is already loaded
+  function isGoogleMapsLoaded() {
+    return window.google && window.google.maps;
+  }
+
+  // Function to load the Google Maps API if not already loaded
+  function loadGoogleMapsAPI() {
+    if (isGoogleMapsLoaded()) {
+      console.log("Google Maps already loaded, initializing map...");
       if (typeof initMap === 'function') {
-        initMap();
+        setTimeout(initMap, 100); // Small delay to ensure DOM is ready
       }
       return;
     }
-    
+
+    console.log("Loading Google Maps API...");
     const script = document.createElement('script');
     script.src = "https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap";
-    script.defer = true;
     script.async = true;
-    script.onload = function() {
-      window.mapsApiLoaded = true;
-    };
+    script.defer = true;
     document.head.appendChild(script);
   }
-  
-  document.addEventListener('DOMContentLoaded', loadGoogleMapsApi);
+
+  // Initialize when this script runs
+  loadGoogleMapsAPI();
 </script>
 {% endif %}
