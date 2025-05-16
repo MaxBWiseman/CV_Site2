@@ -45,18 +45,39 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                     
-                    // Handle GitHub initialization if needed
+                    // Update the GitHub initialization section
                     if (url.includes('/github')) {
                         console.log("Loading GitHub page via AJAX, initializing...");
                         
+                        // First load jQuery if not already loaded
+                        if (typeof $ === 'undefined') {
+                            const jQueryScript = document.createElement('script');
+                            jQueryScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+                            jQueryScript.onload = function() {
+                                // Now load GitHub script after jQuery
+                                loadGithubScript();
+                            };
+                            document.head.appendChild(jQueryScript);
+                        } else {
+                            // jQuery already loaded, just load GitHub script
+                            loadGithubScript();
+                        }
+                    }
+                    
+                    function loadGithubScript() {
                         // Force reload of github.js to ensure proper initialization
                         const githubScript = document.createElement('script');
-                        githubScript.src = "/static/js/github.js";
+                        githubScript.src = "/static/js/github.js?v=" + new Date().getTime(); // Add cache buster
                         githubScript.onload = function() {
                             console.log("GitHub script loaded, initializing...");
-                            if (typeof initGitHub === 'function') {
-                                initGitHub();
-                            }
+                            // Use a small timeout to ensure script is fully parsed
+                            setTimeout(function() {
+                                if (typeof window.initGitHub === 'function') {
+                                    window.initGitHub();
+                                } else {
+                                    console.error("initGitHub function not found!");
+                                }
+                            }, 100);
                         };
                         document.head.appendChild(githubScript);
                     }

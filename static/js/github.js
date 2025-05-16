@@ -2,11 +2,15 @@
 function initGitHub() {
     console.log("GitHub init called");
     
-    // Clear previous data
-    if (typeof $ !== 'undefined') {
-        $('#gh-user-data').html('');
-        $('#gh-repo-data').html('');
+    // Make sure jQuery is available
+    if (typeof $ === 'undefined') {
+        console.error("jQuery not available - GitHub functionality won't work");
+        return;
     }
+    
+    // Clear previous data
+    $('#gh-user-data').html('');
+    $('#gh-repo-data').html('');
     
     fetchGitHubInformation('MaxBWiseman');
     
@@ -27,8 +31,6 @@ function handleUsernameInput() {
         fetchGitHubInformation(username);
     }
 }
-
-document.addEventListener('DOMContentLoaded', initGitHub);
 
 function userInformationHTML(user) {
     return `
