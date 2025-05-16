@@ -5,7 +5,13 @@
   
   // Function to load Google Maps API
   function loadGoogleMapsApi() {
-    if (window.mapsApiLoaded) return;
+    if (window.mapsApiLoaded) {
+      // If already loaded, just initialize the map
+      if (typeof initMap === 'function') {
+        initMap();
+      }
+      return;
+    }
     
     const script = document.createElement('script');
     script.src = "https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap";
@@ -13,21 +19,10 @@
     script.async = true;
     script.onload = function() {
       window.mapsApiLoaded = true;
-      // Dispatch event when API is loaded
-      document.dispatchEvent(new Event('googleMapsLoaded'));
     };
     document.head.appendChild(script);
   }
   
-  // Initialize map when page loads
   document.addEventListener('DOMContentLoaded', loadGoogleMapsApi);
-  
-  // Handle navigation with browser back/forward buttons
-  window.addEventListener('pageshow', function(event) {
-    // Force map reinitialization if returning from cache
-    if (event.persisted) {
-      initMap();
-    }
-  });
 </script>
 {% endif %}
