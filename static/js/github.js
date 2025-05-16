@@ -1,7 +1,5 @@
-// Initialize on load and expose the function globally
-function initGitHub() {
-    console.log("GitHub init called");
-    
+// Initialize when the document is ready
+document.addEventListener('DOMContentLoaded', function() {
     // Make sure jQuery is available
     if (typeof $ === 'undefined') {
         console.error("jQuery not available - GitHub functionality won't work");
@@ -12,25 +10,20 @@ function initGitHub() {
     $('#gh-user-data').html('');
     $('#gh-repo-data').html('');
     
+    // Load default username
     fetchGitHubInformation('MaxBWiseman');
     
-    // Setup input event if the element exists
+    // Setup input event handler
     const usernameInput = document.getElementById('gh-username');
     if (usernameInput) {
-        // Remove any existing event listeners
-        usernameInput.removeEventListener('input', handleUsernameInput);
-        // Add new event listener
-        usernameInput.addEventListener('input', handleUsernameInput);
+        usernameInput.addEventListener('input', function() {
+            const username = this.value.trim();
+            if (username) {
+                fetchGitHubInformation(username);
+            }
+        });
     }
-}
-
-// Extract event handler to named function
-function handleUsernameInput() {
-    const username = this.value.trim();
-    if (username) {
-        fetchGitHubInformation(username);
-    }
-}
+});
 
 function userInformationHTML(user) {
     return `
@@ -71,7 +64,7 @@ function repoInformationHTML(repos) {
             </div>`;
 }
 
-function fetchGitHubInformation(username = null) {
+function fetchGitHubInformation(username) {
     if (!username) {
         username = $('#gh-username').val();
     }
@@ -81,6 +74,9 @@ function fetchGitHubInformation(username = null) {
         return;
     }
 
+    // Clear previous data
+    $('#gh-user-data').html('');
+    $('#gh-repo-data').html('');
     $('#loader-container').show();
 
     $.when(
@@ -97,21 +93,13 @@ function fetchGitHubInformation(username = null) {
             if (errorResponse.status === 404) {
                 $('#gh-user-data').html(`<h4 class="text-center">No info found for user ${username}</h4>`);
             } else if (errorResponse.status === 403) {
-                let resetTimeHeader = errorResponse.getResponseHeader('X-RateLimit-Reset');
-                let resetTime = resetTimeHeader ? new Date(resetTimeHeader * 1000) : null;
-                let message = resetTime
-                    ? `Too many requests, please wait until ${resetTime.toLocaleTimeString()}`
-                    : 'Too many requests, please try again later.';
-                $('#gh-user-data').html(`<h4 class="text-center">${message}</h4>`);
+                let resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset') * 1000);
+                $('#gh-user-data').html(`<h4 class="text-center">Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);
             } else {
-                console.log(errorResponse);
                 $('#gh-user-data').html(`<h4 class="text-center">Error: ${errorResponse.responseJSON.message}</h4>`);
             }
         }
     ).always(function () {
-        // Hide the loader
         $('#loader-container').hide();
     });
 }
-
-window.initGitHub = initGitHub;
