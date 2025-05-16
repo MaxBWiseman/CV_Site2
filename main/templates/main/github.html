@@ -1,33 +1,33 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section>
+  <section>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 bg-color-three-reasons section-column">
-                <div class="row">
-                    <div class="col-12">
-                        <h3 class="contact-heading uppercase text-center">View My GitHub Projects</h3>
-                        <h5 class="uppercase text-center">You can also search on other user profiles</h5>
-                        <div id="gh-user-data-nousername"></div>
-                        <div class="center-form mb-3">
-                            <input type="text" id="gh-username" value="MaxBWiseman" />
-                            <div id="loader-container" style="display: none;">
-                                <div class="loader" alt="loading..."></div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="row">
+        <div class="col-12 bg-color-three-reasons section-column">
+          <div class="row">
+            <div class="col-12">
+              <h3 class="contact-heading uppercase text-center">View My GitHub Projects</h3>
+              <h5 class="uppercase text-center">You can also search on other user profiles</h5>
+              <div id="gh-user-data-nousername"></div>
+              <div class="center-form mb-3">
+                <input type="text" id="gh-username" value="MaxBWiseman" />
+                <div id="loader-container" style="display: none;">
+                  <div class="loader" alt="loading..."></div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <div class="row d-flex justify-content-center bg-color-contact">
-            <div class="col-12 col-md-8">
-                <div id="gh-user-data" class="d-flex justify-content-center"></div>
-                <div id="gh-repo-data"></div>
-            </div>
+      <div class="row d-flex justify-content-center bg-color-contact">
+        <div class="col-12 col-md-8">
+          <div id="gh-user-data" class="d-flex justify-content-center"></div>
+          <div id="gh-repo-data"></div>
         </div>
+      </div>
     </div>
-</section>
-<script src="{% static 'js/github.js' %}"></script>
+  </section>
+  <script src="{% static 'js/github.js' %}"></script>
 {% endblock %}

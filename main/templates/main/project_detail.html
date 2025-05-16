@@ -1,162 +1,162 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
   <section class="bg-color-three-reasons">
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-10 col-lg-8 text-center mt-5 ms-2 me-2">
-           <!-- Image carousel will be added here -->
-            <div id="github-image-carousel" class="carousel slide mt-4" data-bs-ride="carousel" style="display: none;">
-                <div class="carousel-inner" id="carousel-items">
-                    <!-- Carousel items will be added dynamically -->
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#github-image-carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#github-image-carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <div class="carousel-indicators" id="carousel-indicators">
-                    <!-- Indicators will be added dynamically -->
-                </div>
+          <!-- Image carousel will be added here -->
+          <div id="github-image-carousel" class="carousel slide mt-4" data-bs-ride="carousel" style="display: none;">
+            <div class="carousel-inner" id="carousel-items">
+              <!-- Carousel items will be added dynamically -->
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#github-image-carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#github-image-carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <div class="carousel-indicators" id="carousel-indicators">
+              <!-- Indicators will be added dynamically -->
+            </div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12 mt-3 p-2">
           <div class="project-detail-container rounded mt-4 ms-2 me-2">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h3 class="uppercase bold mt-3">{{ project.title }}</h3>
-          <br>
-          <div id="portfolio-buttons" class="d-flex justify-content-center">
-          <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">View on GitHub</a>
-          <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
-          <a href="{{ project.deployed_link }}" class="btn btn-primary" target="_blank">View Deployed Project</a>
-          <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
-          <div>
-            <button id="toggle-readme" class="btn btn-primary">View ReadMe</button>
-          </div>
-          </div>
-          </div>
-          </div>
-          <hr>
-          <article class="p-3">
-            <div id="content-container">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h3 class="uppercase bold mt-3">{{ project.title }}</h3>
+                <br />
+                <div id="portfolio-buttons" class="d-flex justify-content-center">
+                  <a href="{{ project.github_link }}" class="btn btn-primary" target="_blank">View on GitHub</a>
+                  <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
+                  <a href="{{ project.deployed_link }}" class="btn btn-primary" target="_blank">View Deployed Project</a>
+                  <span><p class="ms-2 mt-1 mb-0 me-2">-</p></span>
+                  <div>
+                    <button id="toggle-readme" class="btn btn-primary">View ReadMe</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <article class="p-3">
+              <div id="content-container">
                 <div id="project-description">{{ project.description|safe }}</div>
                 <div id="markdown-content" style="display: none;">{{ project.project_readme|safe }}</div>
-            </div>
-          </article>
-        </div>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </div>
   </section>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("toggle-readme");
-        const projectDescription = document.getElementById("project-description");
-        const markdownContent = document.getElementById("markdown-content");
-        const imageCarousel = document.getElementById("github-image-carousel");
-        const carouselItems = document.getElementById("carousel-items");
-        const carouselIndicators = document.getElementById("carousel-indicators");
-        let readmeVisible = false;
-        
-        // Initialize markdown rendering
-        const rawMarkdown = markdownContent.textContent.trim();
-        const renderedHTML = marked.parse(rawMarkdown);
-        markdownContent.innerHTML = renderedHTML;
-        
-        // Fix image paths and collect images for carousel
-        function processImages() {
-            const images = markdownContent.querySelectorAll('img');
-            let carouselImages = [];
-            
-            images.forEach((img, index) => {
-                const src = img.getAttribute('src');
-                let fixedSrc = src;
-                
-                if (src && (src.startsWith('./') || !src.startsWith('http') && !src.startsWith('/'))) {
-                    if (src.startsWith('./')) {
-                        fixedSrc = "{{ project.github_raw_content_base_url }}" + src.substring(2);
-                    } else {
-                        fixedSrc = "{{ project.github_raw_content_base_url }}" + src;
-                    }
-                    img.src = fixedSrc;
-                    
-                    // Add to carousel images collection
-                    carouselImages.push({
-                        src: fixedSrc,
-                        alt: img.alt || `Project image ${index + 1}`
-                    });
-                }
-            });
-            
-            // Create carousel if we have images
-            if (carouselImages.length > 0) {
-                createCarousel(carouselImages);
-                imageCarousel.style.display = "block";
-            }
-        }
-        
-        function createCarousel(images) {
-            // Clear existing items
-            carouselItems.innerHTML = '';
-            carouselIndicators.innerHTML = '';
-            
-            // Create carousel items and indicators
-            images.forEach((image, index) => {
-                // Create carousel item
-                const item = document.createElement('div');
-                item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
-                
-                const img = document.createElement('img');
-                img.src = image.src;
-                img.alt = image.alt;
-                
-                item.appendChild(img);
-                carouselItems.appendChild(item);
-                
-                // Create indicator
-                const indicator = document.createElement('button');
-                indicator.type = 'button';
-                indicator.setAttribute('data-bs-target', '#github-image-carousel');
-                indicator.setAttribute('data-bs-slide-to', index.toString());
-                if (index === 0) {
-                    indicator.className = 'active';
-                    indicator.setAttribute('aria-current', 'true');
-                }
-                indicator.setAttribute('aria-label', `Slide ${index + 1}`);
-                
-                carouselIndicators.appendChild(indicator);
-            });
-        }
-        
-        // Process images at initialization
-        processImages();
-        
-        // Toggle between description and README
-        toggleButton.addEventListener("click", function() {
-            if (readmeVisible) {
-                markdownContent.style.display = "none";
-                projectDescription.style.display = "block";
-                if (carouselItems.children.length === 0) {
-                  imageCarousel.style.display = "none";
-                }
-                toggleButton.textContent = "View ReadMe";
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButton = document.getElementById('toggle-readme')
+      const projectDescription = document.getElementById('project-description')
+      const markdownContent = document.getElementById('markdown-content')
+      const imageCarousel = document.getElementById('github-image-carousel')
+      const carouselItems = document.getElementById('carousel-items')
+      const carouselIndicators = document.getElementById('carousel-indicators')
+      let readmeVisible = false
+    
+      // Initialize markdown rendering
+      const rawMarkdown = markdownContent.textContent.trim()
+      const renderedHTML = marked.parse(rawMarkdown)
+      markdownContent.innerHTML = renderedHTML
+    
+      // Fix image paths and collect images for carousel
+      function processImages() {
+        const images = markdownContent.querySelectorAll('img')
+        let carouselImages = []
+    
+        images.forEach((img, index) => {
+          const src = img.getAttribute('src')
+          let fixedSrc = src
+    
+          if (src && (src.startsWith('./') || (!src.startsWith('http') && !src.startsWith('/')))) {
+            if (src.startsWith('./')) {
+              fixedSrc = '{{ project.github_raw_content_base_url }}' + src.substring(2)
             } else {
-                projectDescription.style.display = "none";
-                markdownContent.style.display = "block";
-                if (carouselItems.children.length > 0) {
-                  imageCarousel.style.display = "block";
-                }
-                toggleButton.textContent = "View Highlights";
+              fixedSrc = '{{ project.github_raw_content_base_url }}' + src
             }
-            readmeVisible = !readmeVisible;
-        });
-    });
-</script>
+            img.src = fixedSrc
+    
+            // Add to carousel images collection
+            carouselImages.push({
+              src: fixedSrc,
+              alt: img.alt || `Project image ${index + 1}`
+            })
+          }
+        })
+    
+        // Create carousel if we have images
+        if (carouselImages.length > 0) {
+          createCarousel(carouselImages)
+          imageCarousel.style.display = 'block'
+        }
+      }
+    
+      function createCarousel(images) {
+        // Clear existing items
+        carouselItems.innerHTML = ''
+        carouselIndicators.innerHTML = ''
+    
+        // Create carousel items and indicators
+        images.forEach((image, index) => {
+          // Create carousel item
+          const item = document.createElement('div')
+          item.className = `carousel-item ${index === 0 ? 'active' : ''}`
+    
+          const img = document.createElement('img')
+          img.src = image.src
+          img.alt = image.alt
+    
+          item.appendChild(img)
+          carouselItems.appendChild(item)
+    
+          // Create indicator
+          const indicator = document.createElement('button')
+          indicator.type = 'button'
+          indicator.setAttribute('data-bs-target', '#github-image-carousel')
+          indicator.setAttribute('data-bs-slide-to', index.toString())
+          if (index === 0) {
+            indicator.className = 'active'
+            indicator.setAttribute('aria-current', 'true')
+          }
+          indicator.setAttribute('aria-label', `Slide ${index + 1}`)
+    
+          carouselIndicators.appendChild(indicator)
+        })
+      }
+    
+      // Process images at initialization
+      processImages()
+    
+      // Toggle between description and README
+      toggleButton.addEventListener('click', function () {
+        if (readmeVisible) {
+          markdownContent.style.display = 'none'
+          projectDescription.style.display = 'block'
+          if (carouselItems.children.length === 0) {
+            imageCarousel.style.display = 'none'
+          }
+          toggleButton.textContent = 'View ReadMe'
+        } else {
+          projectDescription.style.display = 'none'
+          markdownContent.style.display = 'block'
+          if (carouselItems.children.length > 0) {
+            imageCarousel.style.display = 'block'
+          }
+          toggleButton.textContent = 'View Highlights'
+        }
+        readmeVisible = !readmeVisible
+      })
+    })
+  </script>
 {% endblock %}

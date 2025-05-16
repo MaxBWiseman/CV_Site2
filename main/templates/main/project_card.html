@@ -1,20 +1,21 @@
 <div class="col-12 project-card-container">
-    <a href="{% url 'project_detail' project.slug %}" class="card-link; text-decoration-none">
-        <div class="row card3" style="position: relative;">
-            <div class="col-12 card-title">
-                <h4 class="three-reasons-heading uppercase fs-5 text-center">{{ project.title }}</h4>
-            </div>
-            <div class="p-0 card-img-top">
-                {% if project.github_banner_image_url %}
-                    <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" 
-                         onerror="this.onerror=null; this.src='{{ project.project_banner_image.url }}';" />
-                {% else %}
-                    <img src="{{ project.project_banner_image.url }}" alt="Project Image" />
-                {% endif %}
-            </div>
-            <div class="card-body p-0 text-center mt-2">
-                <p>{{ project.description|striptags|slice:":130" }}{% if project.description|length > 130 %}...{% endif %}</p>
-            </div>
-        </div>
-    </a>
+  <a href="{% url 'project_detail' project.slug %}" class="card-link; text-decoration-none">
+    <div class="row card3" style="position: relative;">
+      <div class="col-12 card-title">
+        <h4 class="three-reasons-heading uppercase fs-5 text-center">{{ project.title }}</h4>
+      </div>
+      <div class="p-0 card-img-top">
+        {% if project.github_banner_image_url %}
+          <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" onerror="this.onerror=null; this.src='{{ project.project_banner_image.url }}';" />
+        {% else %}
+          <img src="{{ project.project_banner_image.url }}" alt="Project Image" />
+        {% endif %}
+      </div>
+      <div class="card-body p-0 text-center mt-2">
+        <p>
+          {{ project.description|striptags|slice:':130' }}{% if project.description|length > 130 %}...{% endif %}
+        </p>
+      </div>
+    </div>
+  </a>
 </div>
