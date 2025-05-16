@@ -1,6 +1,36 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Initialize on load and expose the function globally
+function initGitHub() {
+    console.log("GitHub init called");
+    
+    // Make sure jQuery is available
+    if (typeof $ === 'undefined') {
+        console.error("jQuery not available - GitHub functionality won't work");
+        return;
+    }
+    
+    // Clear previous data
+    $('#gh-user-data').html('');
+    $('#gh-repo-data').html('');
+    
     fetchGitHubInformation('MaxBWiseman');
-});
+    
+    // Setup input event if the element exists
+    const usernameInput = document.getElementById('gh-username');
+    if (usernameInput) {
+        // Remove any existing event listeners
+        usernameInput.removeEventListener('input', handleUsernameInput);
+        // Add new event listener
+        usernameInput.addEventListener('input', handleUsernameInput);
+    }
+}
+
+// Extract event handler to named function
+function handleUsernameInput() {
+    const username = this.value.trim();
+    if (username) {
+        fetchGitHubInformation(username);
+    }
+}
 
 function userInformationHTML(user) {
     return `
@@ -12,7 +42,8 @@ function userInformationHTML(user) {
         <div class="gh-content d-flex justify-content-between">
             <div class="gh-avatar right-align ml-auto">
                 <a href="${user.html_url}" target="_blank">
-                    <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}" />
+                    <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}"
+                    class="d-sm-none d-md-block" />
                 </a>
             </div>
             <p class="right-align">Followers: ${user.followers} - Following: ${user.following} <br> Repos: ${user.public_repos}</p>
@@ -82,3 +113,5 @@ function fetchGitHubInformation(username = null) {
         $('#loader-container').hide();
     });
 }
+
+window.initGitHub = initGitHub;
