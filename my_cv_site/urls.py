@@ -25,6 +25,7 @@ urlpatterns = [
     path("", include('main.urls'), name='main'),
     path("summernote/", include('django_summernote.urls')),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+# Always serve media files
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns is required to serve static files in development and production
