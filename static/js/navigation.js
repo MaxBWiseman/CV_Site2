@@ -46,8 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     // Handle GitHub initialization if needed
-                    if (url.includes('/github') && typeof initGitHub === 'function') {
-                        setTimeout(initGitHub, 100);
+                    if (url.includes('/github')) {
+                        console.log("Loading GitHub page via AJAX, initializing...");
+                        
+                        // Force reload of github.js to ensure proper initialization
+                        const githubScript = document.createElement('script');
+                        githubScript.src = "/static/js/github.js";
+                        githubScript.onload = function() {
+                            console.log("GitHub script loaded, initializing...");
+                            if (typeof initGitHub === 'function') {
+                                initGitHub();
+                            }
+                        };
+                        document.head.appendChild(githubScript);
                     }
                     
                     // Process any other scripts in the loaded content

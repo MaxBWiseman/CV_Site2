@@ -1,16 +1,30 @@
 // Initialize on load and expose the function globally
 function initGitHub() {
+    console.log("GitHub init called");
+    
+    // Clear previous data
+    if (typeof $ !== 'undefined') {
+        $('#gh-user-data').html('');
+        $('#gh-repo-data').html('');
+    }
+    
     fetchGitHubInformation('MaxBWiseman');
     
     // Setup input event if the element exists
     const usernameInput = document.getElementById('gh-username');
     if (usernameInput) {
-        usernameInput.addEventListener('input', function() {
-            const username = this.value.trim();
-            if (username) {
-                fetchGitHubInformation(username);
-            }
-        });
+        // Remove any existing event listeners
+        usernameInput.removeEventListener('input', handleUsernameInput);
+        // Add new event listener
+        usernameInput.addEventListener('input', handleUsernameInput);
+    }
+}
+
+// Extract event handler to named function
+function handleUsernameInput() {
+    const username = this.value.trim();
+    if (username) {
+        fetchGitHubInformation(username);
     }
 }
 
