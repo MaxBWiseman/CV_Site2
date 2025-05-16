@@ -53,7 +53,10 @@ def resume_view(request):
             {"name": "SQLAlchemy", "percentage": 65, "css_class": "bar-color-2"},
         ],
     }
-    return render(request, "main/resume.html", {"skills": skills})
+    return render(request, "main/resume.html", {
+        "skills": skills,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+        })
 # {"skills": skills} is used to pass the skills data to the template
 
 class ContactView(View):
@@ -65,14 +68,21 @@ class ContactView(View):
 class PortfolioView(View):
     def get(self, request):
         projects = Projects.objects.all()  # Load projects
-        return render(request, 'main/portfolio.html', {'projects': projects})
+        return render(request, 'main/portfolio.html', {
+            'projects': projects,
+            'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+            
+            })
 
 class GithubView(View):
     def get(self, request):
-        return render(request, 'main/github.html')
+        return render(request, 'main/github.html', {
+            'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+        })
     
 def project_detail(request, slug):
     project = get_object_or_404(Projects, slug=slug)
     return render(request, 'main/project_detail.html', {
         'project': project,
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
     })
