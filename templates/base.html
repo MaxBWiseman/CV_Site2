@@ -55,7 +55,10 @@
                     <a href="{% url 'contact' %}"><span>📡CONTACT</span></a>
                   </p>
                   <p>
-                    <a href="EMPTY/FILL"><span>⬇️DOWNLOAD</span></a>
+                    <a href="{% static 'cv/Max-Wiseman-CV-LATEST-MAY2025.docx' %}" 
+                       download="Max-Wiseman-CV.docx">
+                      <span>⬇️DOWNLOAD</span>
+                    </a>
                   </p>
                 </div>
               </div>
@@ -77,7 +80,9 @@
         <div class="col-sm-4 text-center mt-3">
           <p class="inline-block">
             Need a printable version of my CV? Download it here.
-            <a href="assets/cv/Max-Wiseman-CV.docx" target="_blank" class="cv-pdf d-block mt-2">
+            <a href="{% static 'cv/Max-Wiseman-CV-LATEST-MAY2025.docx' %}" 
+               download="Max-Wiseman-CV.docx" 
+               class="cv-pdf d-block mt-2">
               <i class="fa fa-download fa-2x" aria-hidden="true"></i>
               <span class="sr-only">Download link.</span>
             </a>

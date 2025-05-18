@@ -1,3 +1,4 @@
+{% load static %}
 <div class="col-12 project-card-container">
   <a href="{% url 'project_detail' project.slug %}" class="card-link; text-decoration-none">
     <div class="row card3" style="position: relative;">
@@ -6,9 +7,9 @@
       </div>
       <div class="p-0 card-img-top">
         {% if project.github_banner_image_url %}
-          <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" onerror="this.onerror=null; this.src='{{ project.project_banner_image.url }}';" />
+          <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" />
         {% else %}
-          <img src="{{ project.project_banner_image.url }}" alt="Project Image" />
+          <img src="{% static "/images/abstract-orange-banner-.jpg" %}" alt="Default orange banner" />
         {% endif %}
       </div>
       <div class="card-body p-0 text-center mt-2">

@@ -74,27 +74,49 @@
       function processImages() {
         const images = markdownContent.querySelectorAll('img')
         let carouselImages = []
-    
+
         images.forEach((img, index) => {
           const src = img.getAttribute('src')
           let fixedSrc = src
-    
-          if (src && (src.startsWith('./') || (!src.startsWith('http') && !src.startsWith('/')))) {
+          let shouldAddToCarousel = false
+
+          // Support multiple common GitHub image paths
+          if (src) {
+            // Case 1: Relative paths starting with ./
             if (src.startsWith('./')) {
               fixedSrc = '{{ project.github_raw_content_base_url }}' + src.substring(2)
-            } else {
+              shouldAddToCarousel = true
+            } 
+            // Case 2: Relative paths not starting with http or /
+            else if (!src.startsWith('http') && !src.startsWith('/')) {
               fixedSrc = '{{ project.github_raw_content_base_url }}' + src
+              shouldAddToCarousel = true
+            } 
+            // Case 3: Path contains /staticfiles/images/ 
+            else if (src.includes('/staticfiles/images/')) {
+              shouldAddToCarousel = true
             }
+            // Case 4: Path contains /assets/images/
+            else if (src.includes('/assets/images/')) {
+              shouldAddToCarousel = true
+            }
+            // Case 5: Path contains /static/images/
+            else if (src.includes('/static/images/')) {
+              shouldAddToCarousel = true
+            }
+            
             img.src = fixedSrc
-    
-            // Add to carousel images collection
-            carouselImages.push({
-              src: fixedSrc,
-              alt: img.alt || `Project image ${index + 1}`
-            })
+
+            // Add to carousel if it's a project image
+            if (shouldAddToCarousel) {
+              carouselImages.push({
+                src: fixedSrc,
+                alt: img.alt || `Project image ${index + 1}`
+              })
+            }
           }
         })
-    
+
         // Create carousel if we have images
         if (carouselImages.length > 0) {
           createCarousel(carouselImages)
