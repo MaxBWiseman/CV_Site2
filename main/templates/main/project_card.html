@@ -1,8 +1,8 @@
 <div class="col-12 project-card-container">
   <a href="{% url 'project_detail' project.slug %}" class="card-link; text-decoration-none">
     <div class="row card3" style="position: relative;">
-      <div class="col-12 card-title">
-        <h4 class="three-reasons-heading uppercase fs-5 text-center">{{ project.title }}</h4>
+      <div class="col-12 card-title" style="height:fit-content!important">
+        <h4 class="uppercase fs-5 text-center">{{ project.title }}</h4>
       </div>
       <div class="p-0 card-img-top">
         {% if project.github_banner_image_url %}

@@ -7,7 +7,7 @@ body {
   margin: 0; /* Remove default margin */
   display: flex;
   flex-direction: column; /* Stack header, content, and footer vertically */
-  background-color: #676767; 
+  background-color: #676767;
 }
 main {
   flex: 1;
@@ -188,7 +188,6 @@ header {
   font-family: "Exo", sans-serif;
   font-weight: 300;
   margin-top: 55px;
-  margin-bottom: 40px;
 }
 /*map*/
 div#map {
@@ -220,7 +219,7 @@ h4 {
 }
 
 .btn-primary:hover {
-  background-color:rgb(190, 104, 28)
+  background-color: rgb(190, 104, 28);
 }
 
 .uppercase {
@@ -233,132 +232,138 @@ article {
   margin-bottom: 40px;
 }
 
-article h1, article h2, article h3, article h4, article h5, article h6 {
-    font-weight: bold;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 }
 
 article p {
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
 }
 
-article ul, article ol {
-    margin-left: 1.5em;
-    margin-bottom: 1em;
+article ul,
+article ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
 }
 
 article pre {
-    background-color: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
 }
 
 article code {
-    background-color: #f4f4f4;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
 }
 
 article table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 1em;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
-article table th, article table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+article table th,
+article table td {
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 
 article table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-    text-align: left;
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-align: left;
 }
 
 #markdown-content {
-    
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    flex: wrap;
-    word-break: break-word;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: wrap;
+  word-break: break-word;
 }
 
 p img {
-    max-width: 50%;
-    height: auto;
+  max-width: 50%;
+  height: auto;
 }
 
 #github-image-carousel {
-    max-width: 800px;
-    max-height: 500px;
-    margin: 0 auto 30px;
-    border-radius: 5px;
+  max-width: 800px;
+  max-height: 500px;
+  margin: 0 auto 30px;
+  border-radius: 5px;
 }
 
 #github-image-carousel .carousel-item {
-    height: 500px;
-    overflow-y: auto;
-    background-color: #676767;
+  height: 500px;
+  overflow-y: auto;
+  background-color: #676767;
 }
 
 #github-image-carousel .carousel-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-    max-height: none; /* Allow natural height */
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-height: none; /* Allow natural height */
 }
 
 /* Position the previous button outside the left edge */
 #github-image-carousel .carousel-control-prev {
-    left: -58px; /* Move 50px to the left outside the carousel */
-    width: 40px;
-    height: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 50%;
+  left: -58px; /* Move 50px to the left outside the carousel */
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
 }
 
 /* Position the next button outside the right edge */
 #github-image-carousel .carousel-control-next {
-    right: -58px; /* Move 50px to the right outside the carousel */
-    width: 40px;
-    height: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 50%;
+  right: -58px; /* Move 50px to the right outside the carousel */
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
 }
 
 /* Make the control icons more visible */
 #github-image-carousel .carousel-control-prev-icon,
 #github-image-carousel .carousel-control-next-icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Target the carousel indicators with more specificity */
 #github-image-carousel .carousel-indicators {
-    position: relative; /* Override Bootstrap's absolute positioning */
-    margin-top: 1px !important;
-    justify-content: center;
-    display: flex;
+  position: relative; /* Override Bootstrap's absolute positioning */
+  margin-top: 1px !important;
+  justify-content: center;
+  display: flex;
 }
 
 /* Style the indicator buttons */
 #github-image-carousel .carousel-indicators button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #fff;
-    margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 5px;
 }
 
 @media (max-width: 773px) {
@@ -499,18 +504,15 @@ footer {
   }
 
   .skill-name {
-    text-align: center;;
+    text-align: center;
     margin-bottom: 5px; /* Add some space below the skill name */
   }
-  
 }
 
 @media (min-width: 570px) {
-
   .skill-percent-number {
     margin-left: 20px;
   }
-  
 }
 
 .progress-type {
@@ -533,12 +535,12 @@ footer {
 }
 
 .card {
-  width:auto;
+  width: auto;
   --bs-card-border-width: 0; /* Set the border width to 0 */
   break-inside: avoid; /* Prevent cards from breaking across columns */
   margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px; 
+  border-radius: 8px;
   background-color: #fff;
 }
 
@@ -558,7 +560,6 @@ footer {
 
 .card-title {
   background-color: #e67f22;
-  height: 25px;
   position: absolute; /* Position the title relative to its parent */
   top: 0; /* Align it to the top edge */
   left: 50%; /* Center it horizontally */
@@ -570,7 +571,6 @@ footer {
   column-count: 2; /* Number of columns */
   column-gap: 20px; /* Space between columns */
 }
-
 
 .header {
   background-color: #676767;
@@ -700,11 +700,11 @@ footer {
 }
 
 .center-form {
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px; 
-    box-sizing: border-box; 
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .center-form form {
@@ -1198,7 +1198,6 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
   }
 
   .card {
@@ -1223,7 +1222,7 @@ img {
     flex-direction: column;
     align-items: center; /* Center the buttons horizontally */
   }
-  
+
   #portfolio-buttons a.btn,
   #portfolio-buttons button.btn,
   #portfolio-buttons div {
@@ -1231,7 +1230,7 @@ img {
     margin-bottom: 10px; /* Add spacing between stacked buttons */
     min-width: 200px; /* Optional: set a minimum width for visual consistency */
   }
-  
+
   /* Remove the horizontal separators when in column layout */
   #portfolio-buttons span {
     display: none;
