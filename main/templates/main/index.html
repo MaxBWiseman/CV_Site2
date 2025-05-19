@@ -6,7 +6,7 @@
         <div class="col-md-4 col-lg-3 bg-color-personal-info section-column">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="section-heading uppercase">
+                    <h3 class="section-heading mb-5 uppercase">
                         Personel Info
                     </h3>
                 </div>
@@ -51,58 +51,130 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 col-lg-9 bg-color-three-reasons section-column">
+        <div class="col-md-8 col-lg-9">
             <div class="row">
                 <div class="col">
-                    <h3 class="section-heading uppercase">About Me</h3>
+                    <h3 class="section-heading uppercase mb-5">About Me</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-10 offset-1 offset-sm-0 col-sm-4 col-md-6">
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="three-reasons-icon fa-solid fa-circle-question" aria-hidden="true"></i>
+            
+            <!-- Add a stable wrapper div -->
+            <div class="rotating-container-wrapper">
+                <!-- Rotating container -->
+                <div class="rotating-container">
+                    <!-- The elements will rotate in a circle -->
+                    <div class="rotating-items">
+                        <!-- Who Am I section -->
+                        <div class="rotating-item" id="whoami-section" data-section="whoami">
+                            <div class="rotating-item-inner">
+                                <div class="rotating-icon">
+                                    <i class="three-reasons-icon fa-solid fa-circle-question" aria-hidden="true"></i>
+                                </div>
+                                <h4 class="three-reasons-heading uppercase">Who am I?</h4>
+                            </div>
                         </div>
-                        <div class="col-10">
-                            <h4 class="three-reasons-heading uppercase">Who am I?</h4>
-                            <p>Hello! My name is Max, and I'm eager to learn and grow in the tech industry
-                                at a respected company, where I can contribute to meaningful projects and make a positive impact.</p>
+                        
+                        <!-- What do I do section -->
+                        <div class="rotating-item" id="whatido-section" data-section="whatido">
+                            <div class="rotating-item-inner">
+                                <div class="rotating-icon">
+                                    <i class="three-reasons-icon fa fa-graduation-cap" aria-hidden="true"></i>
+                                </div>
+                                <h4 class="three-reasons-heading uppercase">What do I do?</h4>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-10 offset-1 offset-sm-0 col-sm-4 col-md-6">
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="three-reasons-icon fa fa-graduation-cap" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10">
-                            <h4 class="three-reasons-heading uppercase">What do I do?</h4>
-                            <p>I am a graduate in full-stack software development, specializing in predictive analytics.
-                                My education was based at the Code Institute, an institution accredited by the University
-                                of the West of Scotland. I achieved an overall merit grade, determined by
-                                five submitted projects, which received the following individual assessments:
-                                Pass, Pass, Merit, Pass, and Distinction. Further details on my
-                                projects can be found in the portfolio section. 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-10 offset-1 offset-sm-0 col-sm-4 col-md-6 last-item">
-                    <div class="row mt-lg-5">
-                        <div class="col-2 mt-lg-5">
-                            <i class="three-reasons-icon fa fa-comment-o" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-10 mt-lg-4">
-                            <h4 class="three-reasons-heading uppercase">Why do I do it?</h4>
-                            <p>I thrive on challenges and the satisfaction of solving complex problems.
-                                Dedication is a core part of my character, which I feel is reflected by enjoying the gym five days a week.
-                                Discipline that directly translates into my strong work ethic. I am highly social and genuinely
-                                enjoy meeting new people, embracing every interaction with positivity and enthusiasm.
-                                My openness to new experiences and knowledge fuels my continuous pursuit of personal and professional growth,
-                                 as I am always seeking fresh challenges and opportunities to expand my horizons.
-                            </p>
+                        
+                        <!-- Why do I do it section -->
+                        <div class="rotating-item" id="whydoit-section" data-section="whydoit">
+                            <div class="rotating-item-inner">
+                                <div class="rotating-icon">
+                                    <i class="three-reasons-icon fa fa-comment-o" aria-hidden="true"></i>
+                                </div>
+                                <h4 class="three-reasons-heading uppercase">Why do I do it?</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Collapsible content container -->
+            <div class="animation-container mt-5">
+                <!-- Who Am I content -->
+                <div class="animation-section" id="whoami-content">
+                    <p>Hello! My name is Max, and I'm eager to learn and grow in the tech industry
+                        at a respected company, where I can contribute to meaningful projects and make a positive impact.</p>
+                </div>
+                
+                <!-- What do I do content -->
+                <div class="animation-section" id="whatido-content">
+                    <p>I am a graduate in full-stack software development, specializing in predictive analytics.
+                        My education was based at the Code Institute, an institution accredited by the University
+                        of the West of Scotland. I achieved an overall merit grade, determined by
+                        five submitted projects, which received the following individual assessments:
+                        Pass, Pass, Merit, Pass, and Distinction. Further details on my
+                        projects can be found in the portfolio section.</p>
+                </div>
+                
+                <!-- Why do I do it content -->
+                <div class="animation-section" id="whydoit-content">
+                    <p>I thrive on challenges and the satisfaction of solving complex problems.
+                        Dedication is a core part of my character, which I feel is reflected by enjoying the gym five days a week.
+                        Discipline that directly translates into my strong work ethic. I am highly social and genuinely
+                        enjoy meeting new people, embracing every interaction with positivity and enthusiasm.
+                        My openness to new experiences and knowledge fuels my continuous pursuit of personal and professional growth,
+                        as I am always seeking fresh challenges and opportunities to expand my horizons.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const rotatingItems = document.querySelectorAll('.rotating-item');
+  const rotatingContainer = document.querySelector('.rotating-items');
+  const contentSections = document.querySelectorAll('.animation-section');
+  const animationContainer = document.querySelector('.animation-container');
+  
+  // Modified handleItemClick function
+  function handleItemClick(e) {
+    // Get the clicked item
+    const clickedItem = e.currentTarget;
+    const sectionId = clickedItem.dataset.section;
+    
+    // Check if this item is already active - if so, ignore the click
+    if (clickedItem.classList.contains('active')) {
+      return; // Exit the function early - do nothing for already active items
+    }
+    
+    // Remove active class from all items
+    rotatingItems.forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // Add active class to clicked item only
+    clickedItem.classList.add('active');
+    
+    // Show content container
+    animationContainer.classList.add('visible');
+    
+    // Toggle content visibility
+    contentSections.forEach(section => {
+      if (section.id === `${sectionId}-content`) {
+        section.classList.add('active');
+        section.classList.remove('d-none');
+        section.classList.add('d-block');
+      } else {
+        section.classList.remove('active');
+        section.classList.remove('d-block');
+        section.classList.add('d-none');
+      }
+    });
+  }
+  
+  // Add click listeners to each rotating item
+  rotatingItems.forEach(item => {
+    item.addEventListener('click', handleItemClick);
+  });
+});
+</script>
 {% endblock %}

@@ -11,8 +11,6 @@ body {
 }
 main {
   flex: 1;
-  display: flex;
-  flex-direction: row;
 }
 
 section {
@@ -194,7 +192,219 @@ div#map {
   min-height: 360px;
 }
 
-/*About*/
+/*Index*/
+
+/* Rotating container styles */
+.rotating-container-wrapper {
+  width: 100%;
+  display: flex !important; /* Important to override any other display values */
+  justify-content: center !important;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+}
+
+.rotating-container {
+  position: relative;
+  width: 540px;
+  height: 475px;
+  transform: none;
+}
+
+.rotating-items {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  animation: rotate 15s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.rotating-item {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #676767;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10; /* Ensure all items have same z-index */
+}
+
+.rotating-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.rotating-item.active {
+  background-color: #e67e22;
+  color: white;
+}
+
+.rotating-item-inner {
+  text-align: center;
+  padding: 10px;
+  animation: counter-rotate 15s linear infinite;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+}
+
+@keyframes counter-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg); /* Negative to counter the parent rotation */
+  }
+}
+
+.rotating-icon {
+  margin-bottom: 5px;
+}
+
+/* Position the three items in a circle */
+#whoami-section {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#whoami-section:hover {
+  transform: translateX(-50%) scale(1.05); /* Combine both transforms */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#whatido-section {
+  bottom: 30px;
+  left: 30px;
+}
+
+#whydoit-section {
+  bottom: 30px;
+  right: 30px;
+}
+
+/* Content sections */
+.animation-container {
+  position: relative; /* Creates positioning context for absolute children */
+  min-height: 0;      /* Start with no height */
+  max-height: 0;      /* Start with no height */
+  overflow: hidden;   /* Hide overflow content */
+  opacity: 0;         /* Start fully transparent */
+  transition: all 0.5s ease;
+  width: 100%; 
+}
+
+/* Visible state */
+.animation-container.visible {
+  opacity: 1;
+  min-height: 200px;  /* Adjust this value based on your content needs */
+  max-height: 500px;  /* Maximum height - adjust as needed */
+}
+
+.animation-section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.animation-section.active {
+  opacity: 1;
+  height: auto;
+  visibility: visible;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Paused state for the animation */
+.rotating-items.paused {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 999px) {
+  .rotating-container {
+    width: 350px;
+    height: 300px;
+  }
+  
+  .rotating-item {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .rotating-item h4 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 575px) {
+  .rotating-container {
+    height: 220px;  /* Increased height slightly */
+    width: 220px;   /* Set explicit width to match height */
+    margin: 20px auto; /* Center the container */
+  }
+  
+  .rotating-item {
+    width: 90px;    /* Smaller circles */
+    height: 90px;
+  }
+
+  /* Position in a circle using trigonometry */
+  #whoami-section {
+    top: -13%;          /* Top position */
+    left: 50%;       /* Center horizontally */
+    transform: translateX(-50%);
+  }
+
+  #whatido-section {
+    bottom: 10%;     /* Position near bottom */
+    left: 0;         /* Left side */
+    transform: translateX(-20%);  /* Slight adjustment */
+  }
+
+  #whydoit-section {
+    bottom: 10%;     /* Position near bottom */
+    right: 0;        /* Right side */
+    transform: translateX(20%);   /* Slight adjustment */
+  }
+
+  .rotating-item h4 {
+    font-size: 14px;
+  }
+  
+  .rotating-item-inner {
+    padding: 5px;
+  }
+  
+  .three-reasons-icon {
+    font-size: 20px;
+  }
+}
 
 @media (min-width: 576px) {
   .last-item {
