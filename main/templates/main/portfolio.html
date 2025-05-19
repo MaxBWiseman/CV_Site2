@@ -3,9 +3,7 @@
 {% block content %}
   <section class="container-fluid">
     <div class="row">
-
-      <!-- Right Column: Skills and Portfolio -->
-      <div class="col-md-8 bg-color-three-reasons section-column">
+      <div class="col-md-12 bg-color-three-reasons section-column">
         <!-- Portfolio Section -->
         <div class="row">
           <div class="col-12">
@@ -14,7 +12,7 @@
         </div>
         <div class="row">
           {% for project in projects %}
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 col-lg-4">
               {% include 'main/project_card.html' %}
             </div>
           {% empty %}

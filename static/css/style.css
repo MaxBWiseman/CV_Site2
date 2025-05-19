@@ -813,6 +813,21 @@ footer {
   justify-content: center;
   margin: 0 auto;
 }
+
+.project-banner-image {
+  width: 100%!important;
+  height: 100%!important;
+  object-fit: cover!important; /* This maintains aspect ratio while filling container */
+  object-position: center!important; /* Centers the image */
+  transition: transform 0.3s ease!important;
+}
+
+.banner-container {
+  height: 200px!important;
+  width: 100%!important;
+  overflow: hidden!important;
+  position: relative!important;
+}
 /* Portfolio end */
 
 /*loader*/

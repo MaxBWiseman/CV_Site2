@@ -5,11 +5,11 @@
       <div class="col-12 card-title" style="height:fit-content!important">
         <h4 class="uppercase fs-5 text-center">{{ project.title }}</h4>
       </div>
-      <div class="p-0 card-img-top">
+      <div class="p-0 card-img-top banner-container">
         {% if project.github_banner_image_url %}
-          <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" />
+          <img src="{{ project.github_banner_image_url }}" alt="{{ project.title }} Banner" class="project-banner-image" />
         {% else %}
-          <img src="{% static "/images/abstract-orange-banner-.jpg" %}" alt="Default orange banner" />
+          <img src="{% static "/images/abstract-orange-banner-.jpg" %}" alt="Default orange banner" class="project-banner-image" />
         {% endif %}
       </div>
       <div class="card-body p-0 text-center mt-2">
