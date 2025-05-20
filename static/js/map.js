@@ -35,28 +35,6 @@ async function initMap() {
                     "</div>" +
                     "</div>",
             },
-            {
-                position: { lat: 51.5074, lng: -0.1278 },
-                icon: "https://1drv.ms/i/c/17800d23338d1269/IQOmfmaO_eGLTYy90u269wztAVKmfn9y34X5ZZ3Sg8PLXPo?width=30",
-                title: "London",
-                content: '<div id="content">' +
-                    '<h2 id="firstHeading" class="firstHeading">London</h2>' +
-                    '<div id="bodyContent">' +
-                    "<p>London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times.</p>" +
-                    "</div>" +
-                    "</div>",
-            },
-            {
-                position: { lat: 48.8566, lng: 2.3522 },
-                icon: "https://1drv.ms/i/c/17800d23338d1269/IQOmfmaO_eGLTYy90u269wztAVKmfn9y34X5ZZ3Sg8PLXPo?width=30",
-                title: "Paris",
-                content: '<div id="content">' +
-                    '<h2 id="firstHeading" class="firstHeading">Paris</h2>' +
-                    '<div id="bodyContent">' +
-                    "<p>Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy, and culture.</p>" +
-                    "</div>" +
-                    "</div>",
-            },
         ];
 
         const infowindow = new google.maps.InfoWindow();

@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (url.includes('/github')) {
                 window.location.href = url;
                 return;
+            } else if (url.includes('/')) {
+                window.location.href = url;
+                return;
             }
             
             // Use fetch to get the page content
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle browser back/forward navigation
     window.addEventListener('popstate', function() {
         // If we're on the GitHub page, reload completely
-        if (window.location.href.includes('/github')) {
+        if (window.location.href.includes('/github') || window.location.href.includes('/')) {
             window.location.reload();
             return;
         }

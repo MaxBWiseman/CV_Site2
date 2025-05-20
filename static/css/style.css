@@ -232,17 +232,26 @@ div#map {
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  z-index: 10; /* Ensure all items have same z-index */
+  z-index: 10;
 }
 
 .rotating-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgb(255, 255, 255);
+  
+}
+
+.rotating-item:hover .three-reasons-icon {
+  color: #aa2222;
 }
 
 .rotating-item.active {
   background-color: #e67e22;
   color: white;
+}
+
+.rotating-item.active .three-reasons-icon {
+  color: #aa2222;
 }
 
 .rotating-item-inner {
@@ -279,8 +288,8 @@ div#map {
 }
 
 #whoami-section:hover {
-  transform: translateX(-50%) scale(1.05); /* Combine both transforms */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 5px 15px rgb(255, 255, 255);
 }
 
 #whatido-section {
@@ -312,16 +321,18 @@ div#map {
 }
 
 .animation-section {
-  background-color: #fff;
+  background-color: #333333;
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 5px;
+  padding: 15px;
+  margin-bottom: 18px;
+  margin-top: 14px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   height: 0;
   visibility: hidden;
   overflow: hidden;
   transition: all 0.5s ease;
+  color: #fff;
 }
 
 .animation-section.active {
